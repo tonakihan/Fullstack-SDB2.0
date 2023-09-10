@@ -1,0 +1,111 @@
+html, 
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  background: #f3e7c8;
+  font-family: 'Raleway', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  margin-left: 210px;
+  margin-right: 210px;
+  flex: 1 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 1.2em;
+}
+
+p {
+  margin-top: 0;
+  text-align: justify;
+  text-indent: 2em;
+}
+
+abbr {
+  cursor: help;
+}
+
+header h1 {
+  text-align: center;
+  position: relative;
+}
+header img {
+  top: 15px;
+  left: 25px;
+  position: absolute;
+}
+header nav {
+  height: 60px;
+  display: flex;
+  font-size: 1.2em;
+  background: #C8B27A;
+}
+header nav ul {
+  padding: 0;
+  display: flex;
+  flex: 1;
+}
+header nav ul * {
+  display: inline;
+  flex: 1;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #000000;
+}
+
+footer {
+  height: 60px;
+  font-size: 1em;
+  font-weight: bolder;
+  color: #efefef;
+  background: #49627C;
+  flex-shrink: 0; /* Prevent Chrome, Opera, and Safari from letting these items shrink to smaller than their content's default minimum size. */
+  padding-top: 10px;
+}
+footer a {
+/* text-decoration: none; */
+  color: #efefef;
+}
+footer * {
+  padding: 0;
+  margin: 0;
+}
+
+
+/* --------CLASSES-------- */
+.sidenav {
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 160px;
+  left: 10px;
+  background: #eaf7f9;
+  color: #000;
+  overflow-x: hidden;
+  padding: 8px 0;
+}
+
+.list-zero {
+  padding: 0;
+  margin: 0;
+}
+.list-zero li {
+  padding-bottom: 10;
+}
+.list-zero label {
+  padding-left: 2em;
+}
+
+.no-marks {
+  list-style-type: none;
+}
+
+.name-set {
+  margin: 0;
+  font-size: 0.9em;
+  font: inherit;
+}
