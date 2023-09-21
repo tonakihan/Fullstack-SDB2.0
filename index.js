@@ -1,6 +1,6 @@
-import express from 'express'
-import engine from 'ejs-mate'
-import path from 'path'
+import express from "express";
+import engine from "ejs-mate";
+import path from "path";
 // import {spawn} from "node:child_process";
 
 const PORT = process.env.PORT || 3000;
@@ -8,28 +8,48 @@ const __dirname = path.resolve();
 
 const app = express();
 
-app.use(express.static(__dirname + '/public'))
-app.engine('ejs', engine) //ejs-mate
-app.set('views', __dirname + '/views'); //Папка для render
-app.set('view engine', 'ejs'); //use .ejs файлы
-
+app.use(express.static(__dirname + "/public"));
+app.engine("ejs", engine); //ejs-mate
+app.set("views", __dirname + "/views"); //Папка для render
+app.set("view engine", "ejs"); //use ejs
 
 app.listen(PORT, () => {
     console.log(
-        `Server starting on port ${PORT}\n` +
-        `  http://localhost:${PORT}`
+        `Server starting on port ${PORT}\n` + `  http://localhost:${PORT}`
     );
 });
 
-app.get('/', (req, res) => {
-  res.render('page/index', {"title": "homepage"})
-})
+app.get("/(|home)", (req, res) => {
+    res.render("page/index", {
+        title: "home",
+    });
+});
+app.get("/select", (req, res) => {
+    res.render("page/select", {
+        title: "select",
+    });
+});
+app.get("/insert", (req, res) => {
+    res.render("page/insert", {
+        title: "insert",
+    });
+});
+app.get("/about", (req, res) => {
+    res.render("page/about", {
+        title: "about",
+    });
+});
+
+app.get("*", (req, res) => {
+    //res.render("page/")
+    res.send("error");
+});
 
 app.get("/api", (req, res) => {
     res.json({
-        msg: 'FRFR'
-    })
-})
+        msg: "FRFR",
+    });
+});
 
 // app.get("/bin", (req, res) => {
 // const sdb_cli = spawn("ls", ["--version"]);

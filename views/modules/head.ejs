@@ -1,5 +1,11 @@
 <head>
   <meta charset="utf-8">
-  <title>SDB2 <%= title %></title>
-  <link rel="stylesheet" type="text/css" href="/styles/index.css">
+  <title>SDB2 
+    <% if (typeof(title) == "undefined" ){ %>
+      <%="unknown" %>
+    <% } else { %>
+      <%=title %>
+    <% } %>
+  </title>
+  <link rel="stylesheet" type="text/css" href="/styles/main.css">
 </head>
