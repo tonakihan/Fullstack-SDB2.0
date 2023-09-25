@@ -9,6 +9,7 @@ const __dirname = path.resolve();
 const app = express();
 
 app.use(express.static(__dirname + "/public"));
+app.use(express.json());
 app.engine("ejs", engine); //ejs-mate
 app.set("views", __dirname + "/views"); //Папка для render
 app.set("view engine", "ejs"); //use ejs
@@ -40,15 +41,26 @@ app.get("/about", (req, res) => {
     });
 });
 
+
+app.get("/api", (req, res) => {
+    //Ща обратиться к sdb и вернуть данные
+    console.log("GET: /api");
+    
+    let data = req.query;
+    console.log(data);
+});
+
+app.post("/api", (req, res) => {
+    console.log("POST: /api");
+
+    res.json({ msg: "post" });
+    console.log(req.body);
+});
+
+
 app.get("*", (req, res) => {
     //res.render("page/")
     res.send("error");
-});
-
-app.get("/api", (req, res) => {
-    res.json({
-        msg: "FRFR",
-    });
 });
 
 // app.get("/bin", (req, res) => {

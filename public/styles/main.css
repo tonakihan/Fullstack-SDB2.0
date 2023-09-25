@@ -50,3 +50,6 @@ main {
 .no_mark {
   list-style-type: none;
 }
+.none {
+    display: none
+}
