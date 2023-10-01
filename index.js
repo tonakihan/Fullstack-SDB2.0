@@ -1,7 +1,7 @@
 import express from "express";
 import engine from "ejs-mate";
 import path from "path";
-import bin from "./bin.js"; //TODO: Встроить после завершения
+import BinDB from "./bin.js"; //TODO: Встроить после завершения
 
 const PORT = process.env.PORT || 3000;
 const __dirname = path.resolve();

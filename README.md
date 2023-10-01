@@ -7,5 +7,5 @@ For works needed:
 ``` bash
 cd SDB
 cargo build -r
-cp target/release/SDB2-cli ./
+cp target/release/SDB2-cli ./SDB2-cli.bin
 ```

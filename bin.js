@@ -1,35 +1,44 @@
-//TODO: Прокоментировать и дописать логику
-
+/* 
+ * Модуль предоставляет простой интерфейс к приложению 
+ * SDB2-cli для встаки и получения данных 
+ */
 import { spawn } from "node:child_process";
 
-const cmd = "./SDB/SDB2-cli";
 
-function bin(mode, target, value) {
-    let args = ["--version"];
-    const sdb_bin = spawn(cmd, args);
+class BinDB {
+    constructor(path) {
+        this.cmd = path;
+    }
 
-    sdb_bin.stdout.on("data", (data) => {
-        //Норма
-        console.log(`stdout ${data}`); //TEST
-    });
+    get(target) {
+    // Метод для получения данных из приложения
+        const bin = spawn(this.cmd, ["-S", "-t", target]);
+        this._logic(bin);
+    }
 
-    sdb_bin.stderr.on("data", (data) => {
-        // При ошибке
-        console.log(`stderr ${data}`); //TEST
-    });
+    put(target, ...value) {
+    // Метод для вставки данных в приложение
+        const bin = spawn(this.cmd, ["-S", "-t", target, "-v", ...value]);
+        this._logic(bin);
+    }
 
-    sdb_bin.on("close", (code) => {
-        //Это дает только код выхода
-        console.log(`Close, code = ${code}`);
-    });
-
-    // if (mode == "GET") {
-    // }
-    // else if (mode == "PUT") {
-    // }
-    // console.log("error")
+    _logic(process) {
+        process.stdout.on("data", (data) => {
+            console.log(`SDB2-cli.bin out: \n${data}`); //TEST
+        });
+        process.stderr.on("data", (data) => {
+            console.log(`Error\ndata: ${data}`); 
+        });
+        process.on("close", (code) => {
+            console.log(`Close SDB2-cli.bin: Code ${code}`);
+        });
+    }
 }
 
-bin(); //TODO:TEST
+//TODO: TEST
+let simpleObj = new BinDB("./SDB/SDB2-cli.bin");
+simpleObj.get("Студент");
+//simpleObj.put("Студент","")
 
-export default bin;
+export default BinDB;
+
