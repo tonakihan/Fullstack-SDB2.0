@@ -1,8 +1,19 @@
-/* 
- * Модуль предоставляет простой интерфейс к приложению 
- * SDB2-cli для встаки и получения данных 
+/*
+ * ===================================================
+ * Модуль предоставляет простой интерфейс к приложению
+ * SDB2-cli для встаки и получения данных
+ * ===================================================
+ *
+ * Example: 
+ * let simpleObj = new BinDB("./SDB/SDB2-cli.bin");
+ * simpleObj.get("Студент").then(()=> {
+ * // Your code
+ * });
  */
-import { spawn } from "node:child_process";
+import { promisify } from "node:util";
+import { execFile } from "node:child_process";
+
+const execFilePromise = promisify(execFile);
 
 
 class BinDB {
@@ -10,35 +21,23 @@ class BinDB {
         this.cmd = path;
     }
 
-    get(target) {
-    // Метод для получения данных из приложения
-        const bin = spawn(this.cmd, ["-S", "-t", target]);
-        this._logic(bin);
+    async get(target) {
+        // Метод для получения данных из приложения
+        return await this._exec("-S", "-t", target);
     }
 
-    put(target, ...value) {
-    // Метод для вставки данных в приложение
-        const bin = spawn(this.cmd, ["-S", "-t", target, "-v", ...value]);
-        this._logic(bin);
+    async put(target, ...value) {
+        //Метод для вставки данных в приложение
+        this._exec("-I", "-t", target, "-v", ...value);
     }
 
-    _logic(process) {
-        process.stdout.on("data", (data) => {
-            console.log(`SDB2-cli.bin out: \n${data}`); //TEST
-        });
-        process.stderr.on("data", (data) => {
-            console.log(`Error\ndata: ${data}`); 
-        });
-        process.on("close", (code) => {
-            console.log(`Close SDB2-cli.bin: Code ${code}`);
-        });
+    async _exec(...args) {
+        const { stdout } = await execFilePromise(this.cmd, args);
+        console.log("Info: SDB - output: \n" + stdout);
+        return stdout;
     }
 }
 
-//TODO: TEST
-let simpleObj = new BinDB("./SDB/SDB2-cli.bin");
-simpleObj.get("Студент");
-//simpleObj.put("Студент","")
 
 export default BinDB;
 
