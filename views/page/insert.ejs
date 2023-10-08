@@ -1,32 +1,25 @@
 <% layout('layouts/main') %>
 
-<form name="one" action="/api" method="post"> 
-  <label for="target" class="name-set">Тип данных</label>
-  <select name="target" class="set-mode">
-    <option value="Cтудент" selected>Студенты</option>
-    <option value="Направление">Направления</option>
-    <option value="Посещаемость">Посещаемость</option>
-    <option value="Ведомость">Ведомость</option>
-    <option value="Тема_занятия">Тема занятий</option>
-    <option value="Предмет">Предмет</option>
-    <option value="Факультет">Факультет</option>
-  </select>
+<main>
+  <form name="one" action="/api" method="post"> 
+    <label for="target" class="name-set">Тип данных</label>
+    <%- include('../modules/select') %>
 
-  <div id="Студент" class="none"> <!-- Нужно добавить поля -->
-  </div>
-  <div id="Направление" class="none">
-  </div>
-  <div id="Посещаемость" class="none">
-  </div>
-  <div id="Ведомость" class="none">
-  </div>
-  <div id="Тема_занятия" class="none">
-  </div>
-  <div id="Предмет" class="none">
-  </div>
-  <div id="Факультет" class="none">
-  </div>
+    <div id="Студент" class="none"> <!-- Нужно добавить поля -->
+    </div>
+    <div id="Направление" class="none">
+    </div>
+    <div id="Посещаемость" class="none">
+    </div>
+    <div id="Ведомость" class="none">
+    </div>
+    <div id="Тема_занятия" class="none">
+    </div>
+    <div id="Предмет" class="none">
+    </div>
+    <div id="Факультет" class="none">
+    </div>
 
-  <button type="submit" form="one">Send</button> 
-</form>
-
+    <button type="submit" form="one">Send</button> 
+  </form>
+</main>

@@ -1,12 +1,13 @@
 import express from "express";
 import engine from "ejs-mate";
 import path from "path";
-import BinDB from "./bin.js"; //TODO: Встроить после завершения
+import BinDB from "./bin.js"; 
 
 const PORT = process.env.PORT || 3000;
 const __dirname = path.resolve();
 
 const app = express();
+const bin = new BinDB("./SDB/SDB2-cli.bin")
 
 app.use(express.static(__dirname + "/public"));
 app.use(express.json());
@@ -43,11 +44,27 @@ app.get("/about", (req, res) => {
 });
 
 app.get("/api", (req, res) => {
-    //Ща обратиться к sdb и вернуть данные
     console.log("GET: /api");
 
     let data = req.query;
     console.log(data);
+
+    if (Object.keys(data).length === 0) {
+        data.nothing = 1; //TODO: Нужно ли?
+        res.status(400).json(data);
+    }
+    else {
+        if (data.target === "Cтудент") { 
+        // Если английская С
+            data.target = "Студент";
+        } 
+        bin.get(data.target)
+            .then(d => {
+                data.data = d;
+                res.json(data)
+            })
+            .catch(e => res.status(500).send(e))
+    }
 });
 
 app.post("/api", (req, res) => {

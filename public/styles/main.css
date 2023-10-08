@@ -15,7 +15,7 @@ header {
   li {
     float: left;
 
-    a:visited, a:hover, a:active {
+    a, a:visited, a:hover, a:active {
       color: inherit;
     }
     a {
