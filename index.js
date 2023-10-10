@@ -1,13 +1,13 @@
 import express from "express";
 import engine from "ejs-mate";
 import path from "path";
-import BinDB from "./bin.js"; 
+import BinDB from "./bin.js";
 
 const PORT = process.env.PORT || 3000;
 const __dirname = path.resolve();
 
 const app = express();
-const bin = new BinDB("./SDB/SDB2-cli.bin")
+const bin = new BinDB("./SDB/SDB2-cli.bin");
 
 app.use(express.static(__dirname + "/public"));
 app.use(express.json());
@@ -52,26 +52,39 @@ app.get("/api", (req, res) => {
     if (Object.keys(data).length === 0) {
         data.nothing = 1; //TODO: Нужно ли?
         res.status(400).json(data);
-    }
-    else {
-        if (data.target === "Cтудент") { 
-        // Если английская С
+    } else {
+        if (data.target === "Cтудент") {
+            // Если английская С
             data.target = "Студент";
-        } 
+        }
         bin.get(data.target)
             .then(d => {
                 data.data = d;
-                res.json(data)
+                res.json(data);
             })
-            .catch(e => res.status(500).send(e))
+            .catch(e => res.status(500).send(e));
     }
 });
 
 app.post("/api", (req, res) => {
     console.log("POST: /api");
 
-    res.json({ msg: "post" });
-    console.log(req.body);
+    res.sendStatus(200); //TEST
+    let data = req.body;
+    console.log(data);
+
+    let arrayData = [];
+    for (let key in data) {
+        if (data[key] === "Cтудент") {
+            // Если английская С
+            data[key] = "Студент";
+        }
+        arrayData.push(data[key]);
+    }
+
+    bin.put(...arrayData)
+        .then(res.send("Ok"))
+        .catch(e => res.status(500).send(e));
 });
 
 app.get("*", (req, res) => {

@@ -6,6 +6,7 @@ This continuation project [WEB-SDB2.0](https://github.com/tonakihan/WEB-SDB2.0_o
 For works needed:
 ``` bash
 cd SDB
+cargo install
 cargo build -r
 cp target/release/SDB2-cli ./SDB2-cli.bin
 ```

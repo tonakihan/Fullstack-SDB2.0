@@ -1,25 +1,59 @@
 <% layout('layouts/main') %>
 
 <main>
-  <form name="one" action="/api" method="post"> 
+  <form name="one" method="post" action="/api"> 
     <label for="target" class="name-set">Тип данных</label>
     <%- include('../modules/select') %>
 
-    <div id="Студент" class="none"> <!-- Нужно добавить поля -->
+    <div id="Студент" class="none"> 
+      <p>Фамилия</p> <input name="last name" type="text" autocomplete="on" required size="20">
+      <p>Имя</p> <input name="first name" type="text" autocomplete="on" required size="20">
+      <p>Отчество</p> <input name="surname" type="text" autocomplete="on" size="20">
+      <p>Номер зчетки</p> <input name="number record book" type="text" autocomplete="on" required size="20">
+      <p>Группа</p> <input name="group" type="text" autocomplete="on" required size="20">
+      <p>Дата рождения</p> <input name="date birth" type="text" autocomplete="on" required size="20">
+      <p>Адрес проживания</p> <input name="address" type="text" autocomplete="on" required size="20">
     </div>
     <div id="Направление" class="none">
+      <p>Сокращенное название</p> <input name="group" type="text" autocomplete="on" required size="20">
+      <p>Наименование</p> <input name="title" type="text" autocomplete="on" required size="20">
+      <p>Код направления</p> <input name="code" type="text" autocomplete="on" required size="20">
+      <p>Дата начала</p> <input name="start date" type="text" autocomplete="on" required size="20">
+      <p>Дата окончания</p> <input name="end date" type="text" autocomplete="on" required size="20">
+      <p>Факультет</p> <input name="faculty" type="text" autocomplete="on" required size="20">
     </div>
     <div id="Посещаемость" class="none">
+      <p>Дата рождения</p> <input name="date" type="text" autocomplete="on" required size="20">
+      <p>Присутствие</p> <!-- Сделать выбор из 2х -->
+      <p>Оценка</p> <input name="mark" type="text" autocomplete="on" required size="20">
+      <p>Предмет</p> <input name="subject" type="text" autocomplete="on" required size="20">
+      <p>Фамилия</p> <input name="last name" type="text" autocomplete="on" required size="20">
+      <p>Имя</p> <input name="first name" type="text" autocomplete="on" required size="20">
+      <p>Отчество</p> <input name="surname" type="text" autocomplete="on" size="20">
+      <p>Тема занятия</p> <input name="themes subject" type="text" autocomplete="on" size="20"> 
     </div>
     <div id="Ведомость" class="none">
+      <p>Оценка</p> <input name="mark" type="text" autocomplete="on" required size="20">
+      <p>Семестр</p> <input name="semester" type="text" autocomplete="on" required size="20">
+      <p>Предмет</p> <input name="subject" type="text" autocomplete="on" required size="20">
+      <p>Фамилия</p> <input name="last name" type="text" autocomplete="on" required size="20">
+      <p>Имя</p> <input name="first name" type="text" autocomplete="on" required size="20">
+      <p>Отчество</p> <input name="surname" type="text" autocomplete="on" size="20">
     </div>
     <div id="Тема_занятия" class="none">
+      <p>Тема</p> <input name="themes subject" type="text" autocomplete="on" size="20"> 
+      <p>Предмет</p> <input name="themes subject" type="text" autocomplete="on" size="20"> 
     </div>
     <div id="Предмет" class="none">
+      <p>Наименование</p> <input name="title" type="text" autocomplete="on" required size="20">
+      <p>Фамилия</p> <input name="last name" type="text" autocomplete="on" required size="20">
+      <p>Имя</p> <input name="first name" type="text" autocomplete="on" required size="20">
+      <p>Отчество</p> <input name="surname" type="text" autocomplete="on" size="20">
     </div>
     <div id="Факультет" class="none">
+      <p>Наименование</p> <input name="title" type="text" autocomplete="on" required size="20">
+      <p>Адрес</p> <input name="address" type="text" autocomplete="on" required size="20">
     </div>
-
-    <button type="submit" form="one">Send</button> 
+    <button type="submit">Send</button> 
   </form>
 </main>
